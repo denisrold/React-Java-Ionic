@@ -14,6 +14,7 @@ const CustomerList: React.FC = () => {
             <IonMenuButton />
           </IonButtons>
           <IonTitle>{name}</IonTitle>
+          Titulos Cliente
         </IonToolbar>
       </IonHeader>
 
@@ -23,7 +24,7 @@ const CustomerList: React.FC = () => {
             <IonTitle size="large">{name}</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer name={name} />
+        <ExploreContainer name={name} />assadadsadssas
       </IonContent>
     </IonPage>
   );

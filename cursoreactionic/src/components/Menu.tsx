@@ -24,7 +24,7 @@ interface AppPage {
 const appPages: AppPage[] = [
   {
     title: 'Clientes',
-    url: '/page/customers',
+    url: '/page/Customers',
     iosIcon: mailOutline,
     mdIcon: people
   },
