@@ -239,5 +239,12 @@ http://ionicframework.com/docs/theming/ */
   padding:10px 5px;
   font-size: 16px;
 }
+
+
  .table:nth-child(even) {background: #f2f2f2 !important}
  .table:nth-child(odd) {background-color: #FFF !important}
+
+ .firstRow{
+  font-weight: bold;
+  text-transform: uppercase;
+ }
