@@ -35,6 +35,8 @@ const App: React.FC = () => {
             <Route path="/" exact={true}>
               <Redirect to="/folder/Inbox" />
             </Route>
+            <Route path="/page/customers" exact={true}>
+            </Route>
             <Route path="/folder/:name" exact={true}>
               <Page />
             </Route>
