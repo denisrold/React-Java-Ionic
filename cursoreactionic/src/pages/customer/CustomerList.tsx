@@ -3,6 +3,7 @@ import { useParams } from 'react-router';
 import ExploreContainer from '../../components/ExploreContainer';
 import { add, close, pencil } from 'ionicons/icons';
 import { useEffect, useState } from 'react';
+import { removeCostumer, saveCustomer, searchCustomers } from './CustomerApi';
 
 const CustomerList: React.FC = () => {
   const { name } = useParams<{ name: string; }>();
@@ -10,28 +11,15 @@ const CustomerList: React.FC = () => {
 
   useEffect(()=>{
     search();
-  },[])
+  },[clientes])
   const search = ()=>{
-    const datosDeEjemplo = [
-      {
-        id:1,
-        firstname:"Juan",
-        lastname:"Perez",
-        email:"juanperez@mail.com",
-        phone:"123456123",
-        address:"Avenida siempre viva 123"
-      },
-      {
-        id:2,
-        firstname:"Jorge",
-        lastname:"Tanata",
-        email:"jorgetanata@mail.com",
-        phone:"123456123",
-        address:"Avenida nunca muerta 123"
-      }
-    ];
-    setClientes(datosDeEjemplo);
+    let result = searchCustomers();
+    setClientes(result);
   }
+  const remove = (id:string)=>{
+    removeCostumer(id);
+    search();
+  };
   return (
     <IonPage>
       <IonHeader>
@@ -68,8 +56,8 @@ const CustomerList: React.FC = () => {
         </IonRow>
       </IonGrid>
       {clientes.map((cliente:any )=>
-           <IonGrid className="table">
-           <IonRow>
+           <IonGrid className="table" key={cliente.id}>
+           <IonRow >
              <IonCol>{cliente.firstname +" "+ cliente.lastname} </IonCol>
              <IonCol>{cliente.email}</IonCol>
              <IonCol>{cliente.phone}</IonCol>
@@ -78,15 +66,20 @@ const CustomerList: React.FC = () => {
                <IonButton  color="primary" fill="clear">
                <IonIcon icon={pencil} slot='icon-only' />
                </IonButton>
-               <IonButton  color="danger" fill="clear">
+               <IonButton  color="danger" fill="clear"
+               onClick={()=>remove(cliente.id)}>
                <IonIcon icon={close} slot='icon-only' />
                </IonButton>
              </IonCol>
            </IonRow>
          </IonGrid>
           )}
-     
       </IonCard>
+      <IonItem>
+         <IonButton color="danger" fill='clear' slot="start" size="default" onClick={saveCustomer}>
+            Agregar Cliente
+          </IonButton>
+          </IonItem>
       </IonContent>
     </IonPage>
   );
