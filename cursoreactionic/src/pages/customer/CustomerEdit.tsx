@@ -1,25 +1,39 @@
 import { IonButton, IonButtons, IonCard, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonInput, IonItem, IonMenuButton, IonPage, IonRow, IonTitle, IonToolbar } from '@ionic/react';
 import { useHistory, useParams } from 'react-router';
-import ExploreContainer from '../../components/ExploreContainer';
-import { add, checkmark, close, pencil, save } from 'ionicons/icons';
+import {checkmark} from 'ionicons/icons';
 import { useEffect, useState } from 'react';
-import { saveCustomer, searchCustomerById, searchCustomers } from './CustomerApi';
+import { saveCustomer, searchCustomerById} from './CustomerApi';
+import Customer from './Customer';
 
 const CustomerEdit: React.FC = () => {
   const { name , id } = useParams<{ name: string; id:string; }>();
-  const [customer, setCustomer] = useState<any>({});
+  const [customer, setCustomer] = useState<Customer>({
+        firstname:"",
+        lastname:"",
+        email:"",
+        phone:"",
+        address:""
+    });
   const history = useHistory();  
   useEffect(()=>{
     search();
-  },[])
-  const search = ()=>{
-    if(id != "new"){ 
-    let result = searchCustomerById(id);
-    setCustomer(result)}
+  },[id])
+  
+  const search =  ()=>{
+    const ID = id;
+    if(ID != "new"){ 
+    let result =  searchCustomerById(ID);
+     setCustomer(result)}
+     else{    setCustomer({
+        firstname:"",
+        lastname:"",
+        email:"",
+        phone:"",
+        address:""
+    })}
   }
   const save=()=>{
     saveCustomer(customer)
-    setCustomer({});
     history.push("/page/Customers")
 };
 
@@ -46,13 +60,13 @@ const CustomerEdit: React.FC = () => {
                 <IonCol>
                     <IonItem>
                       <IonInput label="First Name" labelPlacement="stacked" placeholder="Enter text"
-                      onIonChange={e=>{customer.firstname = e.detail.value}} value={customer.firstname}></IonInput>
+                      onIonChange={e=>{customer.firstname = String(e.detail.value)}} value={customer.firstname}></IonInput>
                  </IonItem>
                 </IonCol>
                 <IonCol>
                     <IonItem>
                        <IonInput label="Last Name" labelPlacement="stacked" placeholder="Enter text" 
-                       onIonChange={e=>{customer.lastname = e.detail.value}} value={customer.lastname}></IonInput>
+                       onIonChange={e=>{customer.lastname = String(e.detail.value)}} value={customer.lastname}></IonInput>
                     </IonItem>
                 </IonCol>
             </IonRow>
@@ -60,13 +74,13 @@ const CustomerEdit: React.FC = () => {
                 <IonCol>
                     <IonItem>
                        <IonInput label="Email" labelPlacement="stacked" placeholder="Enter text"
-                       onIonChange={e=>{customer.email = e.detail.value}} value={customer.email}></IonInput>
+                       onIonChange={e=>{customer.email = String(e.detail.value)}} value={customer.email}></IonInput>
                     </IonItem>
                 </IonCol>
                 <IonCol>
                     <IonItem>
                         <IonInput label="Address" labelPlacement="stacked" placeholder="Enter text"
-                        onIonChange={e=>{customer.address = e.detail.value}} value={customer.address}></IonInput>
+                        onIonChange={e=>{customer.address = String(e.detail.value)}} value={customer.address}></IonInput>
                     </IonItem>
                 </IonCol>
             </IonRow>
@@ -74,7 +88,7 @@ const CustomerEdit: React.FC = () => {
                 <IonCol>
                     <IonItem>
                          <IonInput label="Phone" labelPlacement="stacked" placeholder="Enter text"
-                         onIonChange={e=>{customer.phone = e.detail.value}} value={customer.phone}></IonInput>
+                         onIonChange={e=>{customer.phone = String(e.detail.value)}} value={customer.phone}></IonInput>
                     </IonItem>
                 </IonCol>
             </IonRow>

@@ -3,10 +3,11 @@ import { useHistory, useParams } from 'react-router';
 import { add, close, pencil } from 'ionicons/icons';
 import { useEffect, useState } from 'react';
 import { removeCostumer, saveCustomer, searchCustomers } from './CustomerApi';
+import Customer from './Customer';
 
 const CustomerList: React.FC = () => {
   const { name } = useParams<{ name: string; }>();
-  const [clientes, setClientes] = useState<any>([]);
+  const [clientes, setClientes] = useState<Customer[]>([]);
   const history = useHistory();
   
   useEffect(()=>{
@@ -26,7 +27,7 @@ const CustomerList: React.FC = () => {
   const addCostumer = ()=>{
     history.push("/page/Customers/new");
   };
-  const editCostumer = (id:number)=>{
+  const editCostumer = (id:string)=>{
     history.push("/page/Customers/"+id);
   };
   return (
@@ -63,7 +64,7 @@ const CustomerList: React.FC = () => {
           <IonCol>Acciones</IonCol>
         </IonRow>
       </IonGrid>
-      {clientes.map((cliente:any )=>
+      {clientes.map((cliente: Customer)=>
            <IonGrid className="table" key={cliente.id}>
            <IonRow >
              <IonCol>{cliente.firstname +" "+ cliente.lastname} </IonCol>
@@ -72,11 +73,11 @@ const CustomerList: React.FC = () => {
              <IonCol>{cliente.address}</IonCol>
              <IonCol>
                <IonButton  color="primary" fill="clear"
-                onClick={()=>editCostumer(cliente.id)} >
+                onClick={()=>editCostumer(String(cliente.id))} >
                <IonIcon icon={pencil} slot='icon-only'/>
                </IonButton>
                <IonButton  color="danger" fill="clear"
-               onClick={()=>remove(cliente.id)}>
+               onClick={()=>remove(String(cliente.id))}>
                <IonIcon icon={close} slot='icon-only' />
                </IonButton>
              </IonCol>
@@ -85,7 +86,7 @@ const CustomerList: React.FC = () => {
           )}
       </IonCard>
       <IonItem>
-         <IonButton color="danger" fill='clear' slot="start" size="default" onClick={saveCustomer}>
+         <IonButton color="danger" fill='clear' slot="start" size="default" onClick={()=>saveCustomer}>
             Agregar Cliente
           </IonButton>
           </IonItem>
