@@ -38,7 +38,7 @@ const EmployeeList: React.FC = () => {
             <IonMenuButton />
           </IonButtons>
           <IonTitle>{name}</IonTitle>
-          Titulos Cliente
+           Empleados
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -48,11 +48,11 @@ const EmployeeList: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <IonCard>
-        <IonTitle>Gestión de Clientes</IonTitle>
+        <IonTitle>Gestión de Empleados</IonTitle>
         <IonItem>
           <IonButton color="primary" fill='solid' slot="end" size="default" onClick={addCostumer}>
           <IonIcon icon={add}/>
-            Agregar Cliente
+            Agregar Empleado
           </IonButton>
         </IonItem>
         <IonGrid className="table">

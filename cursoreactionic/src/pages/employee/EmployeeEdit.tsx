@@ -44,7 +44,7 @@ const EmployeeEdit: React.FC = () => {
             <IonMenuButton />
           </IonButtons>
           <IonTitle>{name}</IonTitle>
-          Titulos Cliente
+          Gestionar Empleados
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -54,7 +54,7 @@ const EmployeeEdit: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <IonCard>
-        <IonTitle>{id === "new"? "Agregar cliente":"Editar cliente"}</IonTitle>
+        <IonTitle>{id === "new"? "Agregar empleado":"Editar empleado"}</IonTitle>
             <IonRow>
                 <IonCol>
                     <IonItem>
