@@ -10,7 +10,7 @@ export function searchCustomers(){
 export function removeCostumer(id:string){
     let customers = searchCustomers();
     let indice = customers.findIndex((customer:any)=> customer.id == id);
-    //elimino a partir de un indice 1 elemento.
+    //elimino a partir de un indice 1 elemento
     customers.splice(indice, 1);
     localStorage["customers"] = JSON.stringify(customers);
 };  
