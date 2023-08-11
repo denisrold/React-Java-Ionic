@@ -5,24 +5,7 @@ export function searchCustomers(){
     let customers = localStorage["customers"];
     customers = JSON.parse(customers);
     return customers;
-    /*const datosDeEjemplo = [
-        {
-          id:"1",
-          firstname:"Juan",
-          lastname:"Perez",
-          email:"juanperez@mail.com",
-          phone:"123456123",
-          address:"Avenida siempre viva 123"
-        },
-        {
-          id:"2",
-          firstname:"Jorge",
-          lastname:"Tanata",
-          email:"jorgetanata@mail.com",
-          phone:"123456123",
-          address:"Avenida nunca muerta 123"
-        }
-      ];*/
+   
 };
 export function removeCostumer(id:string){
     let customers = searchCustomers();
@@ -31,16 +14,23 @@ export function removeCostumer(id:string){
     customers.splice(indice, 1);
     localStorage["customers"] = JSON.stringify(customers);
 };  
+
 export function saveCustomer(customer:any){
+ 
     let customers = searchCustomers();
-    //customers.push(customer);
-    customers.push(        {
-        id:"1",
-        firstname:"Juan",
-        lastname:"Perez",
-        email:"juanperez@mail.com",
-        phone:"123456123",
-        address:"Avenida siempre viva 123"
-      })
+    if(customer.id){
+      let indice = customers.findIndex((c:any)=> c.id == customer.id);
+      customers[indice] = customer;
+    }
+    else {
+      customer.id = Math.round(Math.random()*10000000)
+      customers.push(customer);
+    }
     localStorage["customers"] = JSON.stringify(customers);
 };
+
+export function searchCustomerById(id:string){
+  let customers = searchCustomers();
+  let customer = customers.find((customer:any) => customer.id == id);
+  return customer;
+}
