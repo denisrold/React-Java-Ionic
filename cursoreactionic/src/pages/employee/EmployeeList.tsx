@@ -2,12 +2,12 @@ import { IonButton, IonButtons, IonCard, IonCol, IonContent, IonGrid, IonHeader,
 import { useHistory, useParams } from 'react-router';
 import { add, close, pencil } from 'ionicons/icons';
 import { useEffect, useState } from 'react';
-import { removeCostumer, searchCustomers } from './CustomerApi';
-import Customer from './Customer';
+import { removeCostumer, searchEmployees } from './EmployeeApi';
+import Employee from './Employee';
 
-const CustomerList: React.FC = () => {
+const EmployeeList: React.FC = () => {
   const { name } = useParams<{ name: string; }>();
-  const [clientes, setClientes] = useState<Customer[]>([]);
+  const [clientes, setClientes] = useState<Employee[]>([]);
   const history = useHistory();
   
   useEffect(()=>{
@@ -15,7 +15,7 @@ const CustomerList: React.FC = () => {
   },[history.location.pathname])
 
   const search = ()=>{
-    let result = searchCustomers();
+    let result = searchEmployees();
     setClientes(result);
   }
 
@@ -25,10 +25,10 @@ const CustomerList: React.FC = () => {
   };
 
   const addCostumer = ()=>{
-    history.push("/page/Customers/new");
+    history.push("/page/Employees/new");
   };
   const editCostumer = (id:string)=>{
-    history.push("/page/Customers/"+id);
+    history.push("/page/Employees/"+id);
   };
   return (
     <IonPage>
@@ -64,7 +64,7 @@ const CustomerList: React.FC = () => {
           <IonCol>Acciones</IonCol>
         </IonRow>
       </IonGrid>
-      {clientes.map((cliente: Customer)=>
+      {clientes.map((cliente: Employee)=>
            <IonGrid className="table" key={cliente.id}>
            <IonRow >
              <IonCol>{cliente.firstname +" "+ cliente.lastname} </IonCol>
@@ -90,4 +90,4 @@ const CustomerList: React.FC = () => {
   );
 };
 
-export default CustomerList;
+export default EmployeeList;
