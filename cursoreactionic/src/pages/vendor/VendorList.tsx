@@ -2,12 +2,12 @@ import { IonButton, IonButtons, IonCard, IonCol, IonContent, IonGrid, IonHeader,
 import { useHistory, useParams } from 'react-router';
 import { add, close, pencil } from 'ionicons/icons';
 import { useEffect, useState } from 'react';
-import { removeCostumer, searchCustomers } from './CustomerApi';
-import Customer from './Customer';
+import { removeCostumer, searchVendors } from './VendorApi';
+import Vendor from './Vendor';
 
-const CustomerList: React.FC = () => {
+const VendorList: React.FC = () => {
   const { name } = useParams<{ name: string; }>();
-  const [clientes, setClientes] = useState<Customer[]>([]);
+  const [clientes, setClientes] = useState<Vendor[]>([]);
   const history = useHistory();
   
   useEffect(()=>{
@@ -15,7 +15,7 @@ const CustomerList: React.FC = () => {
   },[history.location.pathname])
 
   const search = ()=>{
-    let result = searchCustomers();
+    let result = searchVendors();
     setClientes(result);
   }
 
@@ -25,10 +25,10 @@ const CustomerList: React.FC = () => {
   };
 
   const addCostumer = ()=>{
-    history.push("/page/Customers/new");
+    history.push("/page/Vendors/new");
   };
   const editCostumer = (id:string)=>{
-    history.push("/page/Customers/"+id);
+    history.push("/page/Vendors/"+id);
   };
   return (
     <IonPage>
@@ -38,7 +38,7 @@ const CustomerList: React.FC = () => {
             <IonMenuButton />
           </IonButtons>
           <IonTitle>{name}</IonTitle>
-          Clientes
+          Proveedores
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -48,11 +48,11 @@ const CustomerList: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <IonCard>
-        <IonTitle>Gestión de Clientes</IonTitle>
+        <IonTitle>Gestión de proveedores</IonTitle>
         <IonItem>
           <IonButton color="primary" fill='solid' slot="end" size="default" onClick={addCostumer}>
           <IonIcon icon={add}/>
-            Agregar Cliente
+            Agregar proveedor
           </IonButton>
         </IonItem>
         <IonGrid className="table">
@@ -64,7 +64,7 @@ const CustomerList: React.FC = () => {
           <IonCol>Acciones</IonCol>
         </IonRow>
       </IonGrid>
-      {clientes.map((cliente: Customer)=>
+      {clientes.map((cliente: Vendor)=>
            <IonGrid className="table" key={cliente.id}>
            <IonRow >
              <IonCol>{cliente.firstname +" "+ cliente.lastname} </IonCol>
@@ -90,4 +90,4 @@ const CustomerList: React.FC = () => {
   );
 };
 
-export default CustomerList;
+export default VendorList;

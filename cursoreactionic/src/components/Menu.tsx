@@ -34,6 +34,12 @@ const appPages: AppPage[] = [
     iosIcon: mailOutline,
     mdIcon: people
   },
+  {
+    title: 'Proveedores',
+    url: '/page/Vendors',
+    iosIcon: mailOutline,
+    mdIcon: people
+  }
 ];
 
 const labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
