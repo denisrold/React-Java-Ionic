@@ -23,7 +23,7 @@ public class EmployeesController {
     public void remove(@PathVariable String id){
         service.remove(Long.parseLong(id));
     }
-    @PostMapping("/api/customers")
+    @PostMapping("/api/employees")
     public void save(@RequestBody Employee employee){
         service.save(employee);
     }
