@@ -8,5 +8,5 @@ public interface ICustomerService {
     List<Customer> getAll();
     Customer getById(Long id);
     void remove(Long id);
-    public void save(Customer customer);
+    void save(Customer customer);
 }

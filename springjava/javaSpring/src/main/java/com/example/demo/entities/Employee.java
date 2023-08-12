@@ -25,4 +25,5 @@ public class Employee{
     private String address;
 
     private String phone;
+    private Double salary;
 }

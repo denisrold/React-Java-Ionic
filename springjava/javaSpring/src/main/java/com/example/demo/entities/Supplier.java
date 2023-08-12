@@ -7,7 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "supliers")
+@Table(name = "suppliers")
 @ToString
 @EqualsAndHashCode
 @Getter @Setter
@@ -25,5 +25,5 @@ public class Supplier{
     private String address;
 
     private String phone;
-    private Double salary;
+
 }
