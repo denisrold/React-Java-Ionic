@@ -16,13 +16,14 @@ public class Supplier{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String firstname;
+    private String name;
 
-    private String lastname;
-
+    private String web;
+    private String contact;
     private String email;
 
     private String address;
 
     private String phone;
+    private Double salary;
 }
