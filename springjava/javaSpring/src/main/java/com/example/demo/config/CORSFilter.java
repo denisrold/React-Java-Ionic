@@ -3,9 +3,6 @@ package com.example.demo.config;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
-import javax.servlet.*;
-
-
 import java.io.IOException;
 
 @Component
@@ -13,9 +10,7 @@ public class CORSFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
     }
-
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws ServletException, IOException {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
@@ -29,6 +24,5 @@ public class CORSFilter implements Filter {
 
     @Override
     public void destroy() {
-
     }
 }
