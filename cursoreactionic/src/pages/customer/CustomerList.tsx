@@ -14,8 +14,8 @@ const CustomerList: React.FC = () => {
     search();
   },[history.location.pathname])
 
-  const search = ()=>{
-    let result = searchCustomers();
+  const search = async ()=>{
+    let result = await searchCustomers();
     setClientes(result);
   }
 
