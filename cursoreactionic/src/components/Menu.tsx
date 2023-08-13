@@ -36,7 +36,7 @@ const appPages: AppPage[] = [
   },
   {
     title: 'Proveedores',
-    url: '/page/Vendors',
+    url: '/page/Suppliers',
     iosIcon: mailOutline,
     mdIcon: people
   }

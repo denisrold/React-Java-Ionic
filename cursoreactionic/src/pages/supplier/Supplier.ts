@@ -1,10 +1,11 @@
 //Usamos interfaces para definir la estructura de Datos.
 //datos de interfaces son obligatorios a usarse
-export default interface Vendor{
+export default interface Supplier{
 id?:string;
-firstname:string;
-lastname:string;
+name:string;
 email:string;
-phone?:string; //Con el signo de pregunta no es obligatorio puede ser undefined 
+phone?:string;
 address?:string;
+web?:string;
+contact:string;
 };

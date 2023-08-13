@@ -7,4 +7,5 @@ lastname:string;
 email:string;
 phone?:string; //Con el signo de pregunta no es obligatorio puede ser undefined 
 address?:string;
+salary?:number;
 };

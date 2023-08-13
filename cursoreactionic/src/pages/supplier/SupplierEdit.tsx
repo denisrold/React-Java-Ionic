@@ -2,14 +2,14 @@ import { IonButton, IonButtons, IonCard, IonCol, IonContent, IonGrid, IonHeader,
 import { useHistory, useParams } from 'react-router';
 import {checkmark} from 'ionicons/icons';
 import { useEffect, useState } from 'react';
-import { saveVendor, searchVendorById} from './VendorApi';
-import Vendor from './Vendor';
+import { saveSupplier, searchSupplierById} from './SupplierApi';
+import Supplier from './Supplier';
 
-const VendorEdit: React.FC = () => {
+const SupplierEdit: React.FC = () => {
   const { name , id } = useParams<{ name: string; id:string; }>();
-  const [vendor, setVendor] = useState<Vendor>({
-        firstname:"",
-        lastname:"",
+  const [supplier, setSupplier] = useState<Supplier>({
+        name:"",
+        contact:"",
         email:"",
     });
   const history = useHistory();  
@@ -20,20 +20,21 @@ const VendorEdit: React.FC = () => {
   const search =  ()=>{
     const ID = id;
     if(ID != "new"){ 
-    let result =  searchVendorById(ID);
-     setVendor(result)}
+    let result =  searchSupplierById(ID);
+     setSupplier(result)}
      else{    
-        setVendor({
-            firstname:"",
-            lastname:"",
+        setSupplier({
+            name:"",
+            contact:"",
             email:"",
             phone:"",
-            address:""
+            address:"",
+            web:""
         })}
   }
   const save=()=>{
-    saveVendor(vendor)
-    history.push("/page/Vendors")
+    saveSupplier(supplier)
+    history.push("/page/Suppliers")
 };
 
   return (
@@ -58,14 +59,14 @@ const VendorEdit: React.FC = () => {
             <IonRow>
                 <IonCol>
                     <IonItem>
-                      <IonInput label="First Name" labelPlacement="stacked" placeholder="Enter text"
-                      onIonChange={e=>{vendor.firstname = String(e.detail.value)}} value={vendor.firstname}></IonInput>
+                      <IonInput label="Name" labelPlacement="stacked" placeholder="Enter text"
+                      onIonChange={e=>{supplier.name = String(e.detail.value)}} value={supplier.name}></IonInput>
                  </IonItem>
                 </IonCol>
                 <IonCol>
                     <IonItem>
-                       <IonInput label="Last Name" labelPlacement="stacked" placeholder="Enter text" 
-                       onIonChange={e=>{vendor.lastname = String(e.detail.value)}} value={vendor.lastname}></IonInput>
+                       <IonInput label="Contact" labelPlacement="stacked" placeholder="Enter text" 
+                       onIonChange={e=>{supplier.contact = String(e.detail.value)}} value={supplier.contact}></IonInput>
                     </IonItem>
                 </IonCol>
             </IonRow>
@@ -73,13 +74,13 @@ const VendorEdit: React.FC = () => {
                 <IonCol>
                     <IonItem>
                        <IonInput label="Email" labelPlacement="stacked" placeholder="Enter text"
-                       onIonChange={e=>{vendor.email = String(e.detail.value)}} value={vendor.email}></IonInput>
+                       onIonChange={e=>{supplier.email = String(e.detail.value)}} value={supplier.email}></IonInput>
                     </IonItem>
                 </IonCol>
                 <IonCol>
                     <IonItem>
                         <IonInput label="Address" labelPlacement="stacked" placeholder="Enter text"
-                        onIonChange={e=>{vendor.address = String(e.detail.value)}} value={vendor.address}></IonInput>
+                        onIonChange={e=>{supplier.address = String(e.detail.value)}} value={supplier.address}></IonInput>
                     </IonItem>
                 </IonCol>
             </IonRow>
@@ -87,11 +88,16 @@ const VendorEdit: React.FC = () => {
                 <IonCol>
                     <IonItem>
                          <IonInput label="Phone" labelPlacement="stacked" placeholder="Enter text"
-                         onIonChange={e=>{vendor.phone = String(e.detail.value)}} value={vendor.phone}></IonInput>
+                         onIonChange={e=>{supplier.phone = String(e.detail.value)}} value={supplier.phone}></IonInput>
+                    </IonItem>
+                </IonCol>
+                <IonCol>
+                    <IonItem>
+                         <IonInput label="Web" labelPlacement="stacked" placeholder="Enter text"
+                         onIonChange={e=>{supplier.web= String(e.detail.value)}} value={supplier.web}></IonInput>
                     </IonItem>
                 </IonCol>
             </IonRow>
-
         <IonItem>
           <IonButton onClick={save} color="success" fill='solid' slot="end" size="default">
           <IonIcon icon={checkmark}/>
@@ -104,4 +110,4 @@ const VendorEdit: React.FC = () => {
   );
 };
 
-export default VendorEdit;
+export default SupplierEdit;

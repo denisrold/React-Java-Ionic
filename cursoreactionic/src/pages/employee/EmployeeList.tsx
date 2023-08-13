@@ -61,6 +61,7 @@ const EmployeeList: React.FC = () => {
           <IonCol>Email</IonCol>
           <IonCol>Teléfono</IonCol>
           <IonCol>Dirección</IonCol>
+          <IonCol>Salario</IonCol>
           <IonCol>Acciones</IonCol>
         </IonRow>
       </IonGrid>
@@ -71,6 +72,7 @@ const EmployeeList: React.FC = () => {
              <IonCol>{cliente.email}</IonCol>
              <IonCol>{cliente.phone}</IonCol>
              <IonCol>{cliente.address}</IonCol>
+             <IonCol>{cliente.salary}</IonCol>
              <IonCol>
                <IonButton  color="primary" fill="clear"
                 onClick={()=>editCostumer(String(cliente.id))} >

@@ -28,7 +28,8 @@ const EmployeeEdit: React.FC = () => {
             lastname:"",
             email:"",
             phone:"",
-            address:""
+            address:"",
+            salary:0
         })}
   }
   const save=()=>{
@@ -88,6 +89,12 @@ const EmployeeEdit: React.FC = () => {
                     <IonItem>
                          <IonInput label="Phone" labelPlacement="stacked" placeholder="Enter text"
                          onIonChange={e=>{employee.phone = String(e.detail.value)}} value={employee.phone}></IonInput>
+                    </IonItem>
+                </IonCol>
+                <IonCol>
+                    <IonItem>
+                         <IonInput label="Salario" labelPlacement="stacked" placeholder="Enter text"
+                         onIonChange={e=>{employee.salary = Number(e.detail.value)}} value={employee.salary}></IonInput>
                     </IonItem>
                 </IonCol>
             </IonRow>
