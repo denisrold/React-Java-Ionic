@@ -17,10 +17,10 @@ const SupplierEdit: React.FC = () => {
     search();
   },[id])
   
-  const search =  ()=>{
+  const search = async ()=>{
     const ID = id;
     if(ID != "new"){ 
-    let result =  searchSupplierById(ID);
+    let result = await searchSupplierById(ID);
      setSupplier(result)}
      else{    
         setSupplier({
@@ -32,8 +32,8 @@ const SupplierEdit: React.FC = () => {
             web:""
         })}
   }
-  const save=()=>{
-    saveSupplier(supplier)
+  const save=async()=>{
+    await saveSupplier(supplier)
     history.push("/page/Suppliers")
 };
 

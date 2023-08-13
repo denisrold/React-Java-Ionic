@@ -2,7 +2,7 @@ import { IonButton, IonButtons, IonCard, IonCol, IonContent, IonGrid, IonHeader,
 import { useHistory, useParams } from 'react-router';
 import { add, close, pencil } from 'ionicons/icons';
 import { useEffect, useState } from 'react';
-import { removeCostumer, searchEmployees } from './EmployeeApi';
+import { removeEmployee, searchEmployees } from './EmployeeApi';
 import Employee from './Employee';
 
 const EmployeeList: React.FC = () => {
@@ -14,13 +14,13 @@ const EmployeeList: React.FC = () => {
     search();
   },[history.location.pathname])
 
-  const search = ()=>{
-    let result = searchEmployees();
+  const search =async ()=>{
+    let result =await searchEmployees();
     setClientes(result);
   }
 
-  const remove = (id:string)=>{
-    removeCostumer(id);
+  const remove =async (id:string)=>{
+    await removeEmployee(id);
     search();
   };
 

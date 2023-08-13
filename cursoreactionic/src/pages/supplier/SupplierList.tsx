@@ -2,7 +2,7 @@ import { IonButton, IonButtons, IonCard, IonCol, IonContent, IonGrid, IonHeader,
 import { useHistory, useParams } from 'react-router';
 import { add, close, pencil } from 'ionicons/icons';
 import { useEffect, useState } from 'react';
-import { removeCostumer, searchSuppliers } from './SupplierApi';
+import { removeSupplier, searchSuppliers } from './SupplierApi';
 import Supplier from './Supplier';
 
 const SupplierList: React.FC = () => {
@@ -14,13 +14,13 @@ const SupplierList: React.FC = () => {
     search();
   },[history.location.pathname])
 
-  const search = ()=>{
-    let result = searchSuppliers();
+  const search =async ()=>{
+    let result =await searchSuppliers();
     setClientes(result);
   }
 
-  const remove = (id:string)=>{
-    removeCostumer(id);
+  const remove = async (id:string)=>{
+    await removeSupplier(id);
     search();
   };
 

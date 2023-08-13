@@ -1,38 +1,40 @@
 import Supplier from "./Supplier";
+const url = import.meta.env.VITE_REACT_APP_API + "suppliers";
 
-export function searchSuppliers(){
-    if(!localStorage["suppliers"]){
-        localStorage["suppliers"] = "[]";
-    }
-    let suppliers = localStorage["suppliers"];
-    suppliers = JSON.parse(suppliers);
-    return suppliers;
-   
+export async function searchSuppliers(){
+  let response = await fetch(url,{
+    "method":"GET",
+    "headers":{
+      "Content-Type":"application/json"
+      }
+  });
+    return await response.json();
 };
-export function removeCostumer(id:string){
-    let suppliers = searchSuppliers();
-    let indice = suppliers.findIndex((supplier: Supplier)=> supplier.id == id);
-    //elimino a partir de un indice 1 elemento
-    suppliers.splice(indice, 1);
-    localStorage["suppliers"] = JSON.stringify(suppliers);
+export async function removeSupplier(id:string){
+  let response = await fetch(`${url}/${id}`,{
+    "method":"DELETE",
+    "headers":{
+      "Content-Type":"application/json"
+      }
+  });
 };  
 
-export function saveSupplier(supplier: Supplier){
- 
-    let suppliers = searchSuppliers();
-    if(supplier.id){
-      let indice = suppliers.findIndex((c: Supplier)=> c.id == supplier.id);
-      suppliers[indice] = supplier;
-    }
-    else {
-      supplier.id = String(Math.round(Math.random()*10000000));
-      suppliers.push(supplier);
-    }
-    localStorage["suppliers"] = JSON.stringify(suppliers);
+export async function saveSupplier(supplier: Supplier){
+  let response = await fetch(url,{
+    "method":"POST",
+    "body":JSON.stringify(supplier),
+    "headers":{
+      "Content-Type":"application/json"
+      }
+  });
 };
 
-export  function  searchSupplierById(id:string){
-  let suppliers =  searchSuppliers();
-  let supplier =  suppliers.find((supplier:Supplier) => supplier.id == id);
-  return supplier;
+export async function  searchSupplierById(id:string){
+  let response = await fetch(`${url}/${id}`,{
+    "method":"GET",
+    "headers":{
+      "Content-Type":"application/json"
+      }
+  });
+    return await response.json();
 }

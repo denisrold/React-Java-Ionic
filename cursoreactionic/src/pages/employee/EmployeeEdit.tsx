@@ -17,10 +17,10 @@ const EmployeeEdit: React.FC = () => {
     search();
   },[id])
   
-  const search =  ()=>{
+  const search = async ()=>{
     const ID = id;
     if(ID != "new"){ 
-    let result =  searchEmployeeById(ID);
+    let result = await  searchEmployeeById(ID);
      setEmployee(result)}
      else{    
         setEmployee({
@@ -32,8 +32,8 @@ const EmployeeEdit: React.FC = () => {
             salary:0
         })}
   }
-  const save=()=>{
-    saveEmployee(employee)
+  const save=async ()=>{
+   await saveEmployee(employee)
     history.push("/page/Employees")
 };
 

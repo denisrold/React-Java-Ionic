@@ -1,12 +1,13 @@
 import { IonButton, IonButtons, IonCard, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonInput, IonItem, IonMenuButton, IonPage, IonRow, IonTitle, IonToolbar } from '@ionic/react';
-import { useHistory, useParams } from 'react-router';
+import { useHistory, useParams} from 'react-router';
 import {checkmark} from 'ionicons/icons';
 import { useEffect, useState } from 'react';
 import { saveCustomer, searchCustomerById} from './CustomerApi';
 import Customer from './Customer';
 
 const CustomerEdit: React.FC = () => {
-  const { name , id } = useParams<{ name: string; id:string; }>();
+  const { name , id } = useParams<{ name: string; id:string; }>(); 
+
   const [customer, setCustomer] = useState<Customer>({
         firstname:"",
         lastname:"",
@@ -54,7 +55,7 @@ const CustomerEdit: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <IonCard>
-        <IonTitle>{id === "new"? "Agregar cliente":"Editar cliente"}</IonTitle>
+        <IonTitle>{id=== "new"? "Agregar cliente":"Editar cliente"}</IonTitle>
             <IonRow>
                 <IonCol>
                     <IonItem>
