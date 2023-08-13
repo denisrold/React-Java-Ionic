@@ -7,7 +7,7 @@ export async function searchCustomers(){
   let response = await fetch(url,{
     "method":"GET",
     "headers":{
-      "Content-Type":"aplication/json"
+      "Content-Type":"application/json"
       }
   });
     return await response.json();
@@ -25,6 +25,12 @@ export async function searchCustomers(){
 
 export async function removeCostumer(id:string){
     
+  let response = await fetch(`${url}/${id}`,{
+    "method":"DELETE",
+    "headers":{
+      "Content-Type":"application/json"
+      }
+  });
 
   /* Remove del local Storage
     let customers =await searchCustomers();
@@ -35,8 +41,16 @@ export async function removeCostumer(id:string){
 };  
 
 export async function saveCustomer(customer: Customer){
- 
-    let customers =await searchCustomers();
+  console.log(customer);
+  let response = await fetch(url,{
+    "method":"POST",
+    "body":JSON.stringify(customer),
+    "headers":{
+      "Content-Type":"application/json"
+      }
+  });
+  /* //Con LocalStorage
+    let customers = await searchCustomers();
     if(customer.id){
       let indice = customers.findIndex((c: Customer)=> c.id == customer.id);
       customers[indice] = customer;
@@ -45,11 +59,18 @@ export async function saveCustomer(customer: Customer){
       customer.id = String(Math.round(Math.random()*10000000));
       customers.push(customer);
     }
-    localStorage["customers"] = JSON.stringify(customers);
+    localStorage["customers"] = JSON.stringify(customers);*/
 };
 
 export async  function  searchCustomerById(id:string){
-  let customers =await searchCustomers();
-  let customer =  customers.find((customer:Customer) => customer.id == id);
-  return customer;
+  console.log(`${url}/${id}`)
+  let response = await fetch(`${url}/${id}`,{
+    "method":"GET",
+    "headers":{
+      "Content-Type":"application/json"
+      }
+  });
+    return await response.json();
+  /*let customers =await searchCustomers();
+  let customer =  customers.find((customer:Customer) => customer.id == id);*/
 }

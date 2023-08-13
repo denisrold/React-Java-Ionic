@@ -17,10 +17,10 @@ const CustomerEdit: React.FC = () => {
     search();
   },[id])
   
-  const search =  ()=>{
+  const search = async ()=>{
     const ID = id;
     if(ID != "new"){ 
-    let result =  searchCustomerById(ID);
+    let result = await searchCustomerById(ID);
      setCustomer(result)}
      else{    
         setCustomer({
@@ -31,8 +31,8 @@ const CustomerEdit: React.FC = () => {
             address:""
         })}
   }
-  const save=()=>{
-    saveCustomer(customer)
+  const save = async ()=>{
+   await saveCustomer(customer)
     history.push("/page/Customers")
 };
 

@@ -19,8 +19,8 @@ const CustomerList: React.FC = () => {
     setClientes(result);
   }
 
-  const remove = (id:string)=>{
-    removeCostumer(id);
+  const remove = async (id:string)=>{
+    await removeCostumer(id);
     search();
   };
 
