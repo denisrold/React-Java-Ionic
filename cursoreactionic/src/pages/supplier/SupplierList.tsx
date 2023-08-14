@@ -59,8 +59,6 @@ const SupplierList: React.FC = () => {
         <IonRow className="firstRow">
         <IonCol>Nombre</IonCol>
           <IonCol>Teléfono</IonCol>
-          <IonCol>Contacto</IonCol>
-          <IonCol>Dirección</IonCol>
           <IonCol>web</IonCol>
           <IonCol>Email</IonCol>
           <IonCol>Acciones</IonCol>
@@ -71,8 +69,6 @@ const SupplierList: React.FC = () => {
            <IonRow >
              <IonCol>{cliente.name} </IonCol>
              <IonCol>{cliente.phone}</IonCol>
-             <IonCol>{cliente.contact}</IonCol>
-             <IonCol>{cliente.address}</IonCol>
              <IonCol>{cliente.web}</IonCol>
              <IonCol>{cliente.email}</IonCol>
              <IonCol>
