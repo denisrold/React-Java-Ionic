@@ -59,13 +59,13 @@ const SupplierEdit: React.FC = () => {
             <IonRow>
                 <IonCol>
                     <IonItem>
-                      <IonInput label="Name" labelPlacement="stacked" placeholder="Enter text"
+                      <IonInput label="Name" labelPlacement="stacked" placeholder=""
                       onIonChange={e=>{supplier.name = String(e.detail.value)}} value={supplier.name}></IonInput>
                  </IonItem>
                 </IonCol>
                 <IonCol>
                     <IonItem>
-                       <IonInput label="Contact" labelPlacement="stacked" placeholder="Enter text" 
+                       <IonInput label="Contact" labelPlacement="stacked" placeholder="" 
                        onIonChange={e=>{supplier.contact = String(e.detail.value)}} value={supplier.contact}></IonInput>
                     </IonItem>
                 </IonCol>
@@ -73,13 +73,13 @@ const SupplierEdit: React.FC = () => {
             <IonRow>
                 <IonCol>
                     <IonItem>
-                       <IonInput label="Email" labelPlacement="stacked" placeholder="Enter text"
+                       <IonInput label="Email" labelPlacement="stacked" placeholder=""
                        onIonChange={e=>{supplier.email = String(e.detail.value)}} value={supplier.email}></IonInput>
                     </IonItem>
                 </IonCol>
                 <IonCol>
                     <IonItem>
-                        <IonInput label="Address" labelPlacement="stacked" placeholder="Enter text"
+                        <IonInput label="Address" labelPlacement="stacked" placeholder=""
                         onIonChange={e=>{supplier.address = String(e.detail.value)}} value={supplier.address}></IonInput>
                     </IonItem>
                 </IonCol>
@@ -87,13 +87,13 @@ const SupplierEdit: React.FC = () => {
             <IonRow>
                 <IonCol>
                     <IonItem>
-                         <IonInput label="Phone" labelPlacement="stacked" placeholder="Enter text"
+                         <IonInput label="Phone" labelPlacement="stacked" placeholder=""
                          onIonChange={e=>{supplier.phone = String(e.detail.value)}} value={supplier.phone}></IonInput>
                     </IonItem>
                 </IonCol>
                 <IonCol>
                     <IonItem>
-                         <IonInput label="Web" labelPlacement="stacked" placeholder="Enter text"
+                         <IonInput label="Web" labelPlacement="stacked" placeholder=""
                          onIonChange={e=>{supplier.web= String(e.detail.value)}} value={supplier.web}></IonInput>
                     </IonItem>
                 </IonCol>

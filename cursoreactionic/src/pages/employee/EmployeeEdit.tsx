@@ -59,13 +59,13 @@ const EmployeeEdit: React.FC = () => {
             <IonRow>
                 <IonCol>
                     <IonItem>
-                      <IonInput label="First Name" labelPlacement="stacked" placeholder="Enter text"
+                      <IonInput label="First Name" labelPlacement="stacked" placeholder=""
                       onIonChange={e=>{employee.firstname = String(e.detail.value)}} value={employee.firstname}></IonInput>
                  </IonItem>
                 </IonCol>
                 <IonCol>
                     <IonItem>
-                       <IonInput label="Last Name" labelPlacement="stacked" placeholder="Enter text" 
+                       <IonInput label="Last Name" labelPlacement="stacked" placeholder="" 
                        onIonChange={e=>{employee.lastname = String(e.detail.value)}} value={employee.lastname}></IonInput>
                     </IonItem>
                 </IonCol>
@@ -73,13 +73,13 @@ const EmployeeEdit: React.FC = () => {
             <IonRow>
                 <IonCol>
                     <IonItem>
-                       <IonInput label="Email" labelPlacement="stacked" placeholder="Enter text"
+                       <IonInput label="Email" labelPlacement="stacked" placeholder=""
                        onIonChange={e=>{employee.email = String(e.detail.value)}} value={employee.email}></IonInput>
                     </IonItem>
                 </IonCol>
                 <IonCol>
                     <IonItem>
-                        <IonInput label="Address" labelPlacement="stacked" placeholder="Enter text"
+                        <IonInput label="Address" labelPlacement="stacked" placeholder=""
                         onIonChange={e=>{employee.address = String(e.detail.value)}} value={employee.address}></IonInput>
                     </IonItem>
                 </IonCol>
@@ -87,13 +87,13 @@ const EmployeeEdit: React.FC = () => {
             <IonRow>
                 <IonCol>
                     <IonItem>
-                         <IonInput label="Phone" labelPlacement="stacked" placeholder="Enter text"
+                         <IonInput label="Phone" labelPlacement="stacked" placeholder=""
                          onIonChange={e=>{employee.phone = String(e.detail.value)}} value={employee.phone}></IonInput>
                     </IonItem>
                 </IonCol>
                 <IonCol>
                     <IonItem>
-                         <IonInput label="Salario" labelPlacement="stacked" placeholder="Enter text"
+                         <IonInput label="Salario" labelPlacement="stacked" placeholder=""
                          onIonChange={e=>{employee.salary = Number(e.detail.value)}} value={employee.salary}></IonInput>
                     </IonItem>
                 </IonCol>

@@ -58,11 +58,11 @@ const SupplierList: React.FC = () => {
         <IonGrid className="table">
         <IonRow className="firstRow">
         <IonCol>Nombre</IonCol>
-          <IonCol>Email</IonCol>
           <IonCol>Teléfono</IonCol>
           <IonCol>Contacto</IonCol>
           <IonCol>Dirección</IonCol>
           <IonCol>web</IonCol>
+          <IonCol>Email</IonCol>
           <IonCol>Acciones</IonCol>
         </IonRow>
       </IonGrid>
@@ -70,11 +70,11 @@ const SupplierList: React.FC = () => {
            <IonGrid className="table" key={cliente.id}>
            <IonRow >
              <IonCol>{cliente.name} </IonCol>
-             <IonCol>{cliente.email}</IonCol>
              <IonCol>{cliente.phone}</IonCol>
              <IonCol>{cliente.contact}</IonCol>
              <IonCol>{cliente.address}</IonCol>
              <IonCol>{cliente.web}</IonCol>
+             <IonCol>{cliente.email}</IonCol>
              <IonCol>
                <IonButton  color="primary" fill="clear"
                 onClick={()=>editCostumer(String(cliente.id))} >
