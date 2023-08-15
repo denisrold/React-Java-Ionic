@@ -44,8 +44,7 @@ const SupplierEdit: React.FC = () => {
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>{name}</IonTitle>
-          Gestionar Proveedores
+          <IonTitle style={{fontWeight:"bolder", color:"darkslategray"}}>Gestionar Proveedores</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>

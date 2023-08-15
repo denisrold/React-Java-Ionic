@@ -44,8 +44,7 @@ const CustomerEdit: React.FC = () => {
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>{name}</IonTitle>
-          Titulos Cliente
+          <IonTitle style={{fontWeight:"bolder", color:"darkslategray"}}>Clientes</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>

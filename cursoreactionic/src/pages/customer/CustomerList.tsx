@@ -37,8 +37,8 @@ const CustomerList: React.FC = () => {
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>{name}</IonTitle>
-          Clientes
+          <IonTitle style={{fontWeight:"bolder", color:"darkslategray"}}>Clientes</IonTitle>
+        
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
