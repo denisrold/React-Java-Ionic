@@ -58,11 +58,25 @@ const EmployeeList: React.FC = () => {
     phone:cliente.phone,
     display:{display:"block"}
     })
-  
-
   }
   return (
     <IonPage>
+        <IonCard className='contactCard' style={clientCard.display}>
+          <IonCardHeader className='header'>
+            <IonButton fill="clear" className="close" onClick={closedCard}>
+            <IonIcon icon={close} />
+            </IonButton>
+            <IonCardTitle>{clientCard.firstname +" "+ clientCard.lastname}</IonCardTitle>
+            <IonList className='card-list'>
+            <IonCardSubtitle>Teléfono</IonCardSubtitle>
+            <IonCardContent>{clientCard.phone}</IonCardContent>
+            <IonCardSubtitle>Email</IonCardSubtitle>
+            <IonCardContent>{clientCard.email}</IonCardContent>
+            <IonCardSubtitle>Dirección</IonCardSubtitle>
+            <IonCardContent>{clientCard.address}</IonCardContent>
+            </IonList>
+          </IonCardHeader>
+        </IonCard>
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
@@ -85,22 +99,7 @@ const EmployeeList: React.FC = () => {
             Agregar Empleado
           </IonButton>
         </IonItem>
-        <IonCard className='contactCard' style={clientCard.display}>
-          <IonCardHeader className='header'>
-            <IonButton fill="clear" className="close" onClick={closedCard}>
-            <IonIcon icon={close} />
-            </IonButton>
-            <IonCardTitle>{clientCard.firstname +" "+ clientCard.lastname}</IonCardTitle>
-            <IonList className='card-list'>
-            <IonCardSubtitle>Email</IonCardSubtitle>
-            <IonCardContent>{clientCard.email}</IonCardContent>
-            <IonCardSubtitle>Teléfono</IonCardSubtitle>
-            <IonCardContent>{clientCard.phone}</IonCardContent>
-            <IonCardSubtitle>Dirección</IonCardSubtitle>
-            <IonCardContent>{clientCard.address}</IonCardContent>
-            </IonList>
-          </IonCardHeader>
-        </IonCard>
+        
         <IonGrid className="table">
         <IonRow className="firstRow">
         <IonCol>Nombre</IonCol>
@@ -115,7 +114,7 @@ const EmployeeList: React.FC = () => {
              <IonCol className='col'>{cliente.firstname +" "+ cliente.lastname} </IonCol>
              <IonCol className='col'>{cliente.salary} USD</IonCol>
              <IonCol>
-                <IonButton onClick={()=>handlerClientCard(cliente)} fill='clear'color='primary' style={{ marginLeft:"10px"}}>
+                <IonButton onClick={()=>handlerClientCard(cliente)} fill='clear'color='primary' style={{ marginLeft:"20px"}}>
                   <IonIcon icon={person}/>
                 </IonButton>
              </IonCol>

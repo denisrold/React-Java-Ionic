@@ -120,15 +120,19 @@ ion-item.selected {
   width:40%;
 }
 .contactCard{
+  margin-top:-2.5rem;
   margin-left: 0;
   position: absolute;
   top: 50%;
   left: 50%;
   width:90%;
+  height: 50%;
   transform: translate(-50%, -50%);
   background-color:rgba(230, 231, 231, 0.9);
   z-index:9999;
 }
+
+
 ion-card .header{
   margin-top: -2rem;
   align-items:center;

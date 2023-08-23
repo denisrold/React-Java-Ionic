@@ -58,13 +58,26 @@ const handlerClientCard =(cliente:any)=>{
 };
   return (
     <IonPage>
+      <IonCard className='contactCard' style={clientCard.display}>
+          <IonCardHeader className='header'>
+            <IonButton fill="clear" className="close" onClick={closedCard}>
+            <IonIcon icon={close} />
+            </IonButton>
+            <IonCardTitle>{clientCard.firstname +" "+ clientCard.lastname}</IonCardTitle>
+            <IonList className='card-list'>
+            <IonCardSubtitle>Teléfono</IonCardSubtitle>
+            <IonCardContent>{clientCard.phone}</IonCardContent>
+            <IonCardSubtitle>Email</IonCardSubtitle>
+            <IonCardContent>{clientCard.email}</IonCardContent>
+            </IonList>
+          </IonCardHeader>
+        </IonCard>
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
           <IonTitle style={{fontWeight:"bolder", color:"darkslategray"}}>Clientes</IonTitle>
-        
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -81,20 +94,6 @@ const handlerClientCard =(cliente:any)=>{
             Agregar Cliente
           </IonButton>
         </IonItem>
-        <IonCard className='contactCard' style={clientCard.display}>
-          <IonCardHeader className='header'>
-            <IonButton fill="clear" className="close" onClick={closedCard}>
-            <IonIcon icon={close} />
-            </IonButton>
-            <IonCardTitle>{clientCard.firstname +" "+ clientCard.lastname}</IonCardTitle>
-            <IonList className='card-list'>
-            <IonCardSubtitle>Email</IonCardSubtitle>
-            <IonCardContent>{clientCard.email}</IonCardContent>
-            <IonCardSubtitle>Teléfono</IonCardSubtitle>
-            <IonCardContent>{clientCard.phone}</IonCardContent>
-            </IonList>
-          </IonCardHeader>
-        </IonCard>
         <IonGrid className="table">
         <IonRow className="firstRow">
           <IonCol>Nombre</IonCol>

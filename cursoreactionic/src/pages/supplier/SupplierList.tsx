@@ -1,4 +1,4 @@
-import { IonButton, IonButtons, IonCard, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonItem, IonMenuButton, IonPage, IonRow, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonItem, IonList, IonMenuButton, IonPage, IonRow, IonTitle, IonToolbar } from '@ionic/react';
 import { useHistory, useParams } from 'react-router';
 import { add, close, pencil, person } from 'ionicons/icons';
 import { useEffect, useState } from 'react';
@@ -9,7 +9,14 @@ const SupplierList: React.FC = () => {
   const { name } = useParams<{ name: string; }>();
   const [clientes, setClientes] = useState<Supplier[]>([]);
   const history = useHistory();
-  
+  const [clientCard,setClientCard]= useState({
+    name:"",
+    contact:"",
+    email:"",
+    phone:"",
+    address:"",
+    display:{display:"none"}
+  });
   useEffect(()=>{
     search();
   },[history.location.pathname])
@@ -30,8 +37,48 @@ const SupplierList: React.FC = () => {
   const editCostumer = (id:string)=>{
     history.push("/page/Suppliers/"+id);
   };
+  const closedCard =()=>{
+    setClientCard({
+      name:"",
+      contact:"",
+      email:"",
+      phone:"",
+      address:"",
+      display:{display:"none"}
+    })
+}
+
+const handlerClientCard =(cliente:any)=>{
+  setClientCard({
+  name:cliente.name,
+  contact:cliente.contact,
+  address:cliente.address,
+  email:cliente.email,
+  phone:cliente.phone,
+  display:{display:"block"}
+  })
+}
   return (
+    
     <IonPage>
+       <IonCard  className='contactCard suppcard' style={clientCard.display}>
+          <IonCardHeader className='header'>
+            <IonButton fill="clear" className="close" onClick={closedCard}>
+            <IonIcon icon={close} />
+            </IonButton>
+            <IonCardTitle>{clientCard.name}</IonCardTitle>
+            <IonList className='card-list'>
+            <IonCardSubtitle>Contacto</IonCardSubtitle>
+            <IonCardContent>{clientCard.contact}</IonCardContent>
+            <IonCardSubtitle>Teléfono</IonCardSubtitle>
+            <IonCardContent>{clientCard.phone}</IonCardContent>
+            <IonCardSubtitle>Email</IonCardSubtitle>
+            <IonCardContent>{clientCard.email}</IonCardContent>
+            <IonCardSubtitle>Dirección</IonCardSubtitle>
+            <IonCardContent>{clientCard.address}</IonCardContent>
+            </IonList>
+          </IonCardHeader>
+        </IonCard>
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
@@ -55,6 +102,7 @@ const SupplierList: React.FC = () => {
             Agregar proveedor
           </IonButton>
         </IonItem>
+       
         <IonGrid className="table">
         <IonRow className="firstRow">
         <IonCol>Nombre</IonCol>
@@ -69,7 +117,9 @@ const SupplierList: React.FC = () => {
              <IonCol>{cliente.name} </IonCol>
              <IonCol>{cliente.web}</IonCol>
              <IonCol>
-                <IonButton fill='clear' style={{ marginLeft:"20px"}}><IonIcon icon={person}/></IonButton>
+                <IonButton fill='clear' style={{ marginLeft:"20px"}} onClick={()=>handlerClientCard(cliente)}>
+                  <IonIcon icon={person}/>
+                </IonButton>
              </IonCol>
              <IonCol>
                <IonButton  color="primary" fill="clear"
