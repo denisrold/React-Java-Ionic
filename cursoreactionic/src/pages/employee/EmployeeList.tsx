@@ -9,6 +9,7 @@ const EmployeeList: React.FC = () => {
   const { name } = useParams<{ name: string; }>();
   const [clientes, setClientes] = useState<Employee[]>([]);
   const history = useHistory();
+  const [clientCard,setClientCard]= useState([]);
   
   useEffect(()=>{
     search();
@@ -54,7 +55,7 @@ const EmployeeList: React.FC = () => {
             Agregar Empleado
           </IonButton>
         </IonItem>
-        <IonCard className='contactCard'>
+        <IonCard className='contactCard' style={{display:"none"}}>
           <IonCardHeader className='header'>
             <IonButton fill="clear" className="close">
             <IonIcon icon={close} />
@@ -73,9 +74,6 @@ const EmployeeList: React.FC = () => {
         <IonGrid className="table">
         <IonRow className="firstRow">
         <IonCol>Nombre</IonCol>
-          <IonCol>Email</IonCol>
-          <IonCol>Teléfono</IonCol>
-          <IonCol>Dirección</IonCol>
           <IonCol>Salario</IonCol>
           <IonCol>Contacto</IonCol>
           <IonCol>Acciones</IonCol>
@@ -84,11 +82,8 @@ const EmployeeList: React.FC = () => {
       {clientes.map((cliente: Employee)=>
            <IonGrid className="table" key={cliente.id}>
            <IonRow >
-             <IonCol>{cliente.firstname +" "+ cliente.lastname} </IonCol>
-             <IonCol>{cliente.email}</IonCol>
-             <IonCol>{cliente.phone}</IonCol>
-             <IonCol>{cliente.address}</IonCol>
-             <IonCol>{cliente.salary} USD</IonCol>
+             <IonCol className='col'>{cliente.firstname +" "+ cliente.lastname} </IonCol>
+             <IonCol className='col'>{cliente.salary} USD</IonCol>
              <IonCol>
                 <IonButton fill='clear'color='primary' style={{ marginLeft:"10px"}}><IonIcon icon={person}/></IonButton>
              </IonCol>

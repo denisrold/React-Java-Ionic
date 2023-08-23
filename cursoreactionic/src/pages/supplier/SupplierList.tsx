@@ -58,9 +58,7 @@ const SupplierList: React.FC = () => {
         <IonGrid className="table">
         <IonRow className="firstRow">
         <IonCol>Nombre</IonCol>
-          <IonCol>Teléfono</IonCol>
           <IonCol>web</IonCol>
-          <IonCol>Email</IonCol>
           <IonCol>Contacto</IonCol>
           <IonCol>Acciones</IonCol>
         </IonRow>
@@ -69,9 +67,7 @@ const SupplierList: React.FC = () => {
            <IonGrid className="table" key={cliente.id}>
            <IonRow >
              <IonCol>{cliente.name} </IonCol>
-             <IonCol>{cliente.phone}</IonCol>
              <IonCol>{cliente.web}</IonCol>
-             <IonCol>{cliente.email}</IonCol>
              <IonCol>
                 <IonButton fill='clear' style={{ marginLeft:"20px"}}><IonIcon icon={person}/></IonButton>
              </IonCol>

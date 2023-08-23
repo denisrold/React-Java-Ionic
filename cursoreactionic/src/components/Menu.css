@@ -120,7 +120,14 @@ ion-item.selected {
   width:40%;
 }
 .contactCard{
-  background-color:rgba(208, 206, 206, 0.2);
+  margin-left: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width:90%;
+  transform: translate(-50%, -50%);
+  background-color:rgba(230, 231, 231, 0.9);
+  z-index:9999;
 }
 ion-card .header{
   margin-top: -2rem;
@@ -135,6 +142,9 @@ ion-card .header{
 
 ion-card ion-card-title{
   font-weight: bold;
+  margin-top: -1rem;
+  margin-bottom: 2rem;
+ 
 }
 
 ion-card ion-card-subtitle
@@ -149,4 +159,13 @@ ion-card .close{
 }
 ion-card ion-card-content{
  margin-left: -1rem;
+}
+.close{
+  margin-top: 1rem;
+}
+ion-col{
+  padding-left: 1rem;
+}
+.col{
+  margin-top: .8rem;
 }

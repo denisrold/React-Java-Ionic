@@ -57,9 +57,7 @@ const CustomerList: React.FC = () => {
         </IonItem>
         <IonGrid className="table">
         <IonRow className="firstRow">
-        <IonCol>Nombre</IonCol>
-          <IonCol>Email</IonCol>
-          <IonCol>Teléfono</IonCol>
+          <IonCol>Nombre</IonCol>
           <IonCol>Dirección</IonCol>
           <IonCol>Contacto</IonCol>
           <IonCol>Acciones</IonCol>
@@ -68,11 +66,8 @@ const CustomerList: React.FC = () => {
       {clientes.map((cliente: Customer)=>
            <IonGrid className="table" key={cliente.id} >
            <IonRow >
-             <IonCol>{cliente.firstname +" "+ cliente.lastname} </IonCol>
-             <IonCol>{cliente.email}</IonCol>
-            
-             <IonCol>{cliente.phone}</IonCol>
-             <IonCol>{cliente.address}</IonCol>
+             <IonCol className='col'>{cliente.firstname +" "+ cliente.lastname} </IonCol>  
+             <IonCol className='col'>{cliente.address}</IonCol>
              <IonCol>
                 <IonButton fill='clear' style={{ marginLeft:"20px"}}><IonIcon icon={person}/></IonButton>
              </IonCol>
