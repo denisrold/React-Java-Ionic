@@ -9,7 +9,14 @@ const EmployeeList: React.FC = () => {
   const { name } = useParams<{ name: string; }>();
   const [clientes, setClientes] = useState<Employee[]>([]);
   const history = useHistory();
-  const [clientCard,setClientCard]= useState([]);
+  const [clientCard,setClientCard]= useState({
+    firstname:"",
+    lastname:"",
+    email:"",
+    phone:"",
+    address:"",
+    display:{display:"none"}
+  });
   
   useEffect(()=>{
     search();
@@ -31,6 +38,29 @@ const EmployeeList: React.FC = () => {
   const editCostumer = (id:string)=>{
     history.push("/page/Employees/"+id);
   };
+  const closedCard =()=>{
+      setClientCard({
+        firstname:"",
+        lastname:"",
+        email:"",
+        phone:"",
+        address:"",
+        display:{display:"none"}
+      })
+  }
+
+  const handlerClientCard =(cliente:any)=>{
+    setClientCard({
+    firstname:cliente.firstname,
+    lastname:cliente.lastname,
+    address:cliente.address,
+    email:cliente.email,
+    phone:cliente.phone,
+    display:{display:"block"}
+    })
+  
+
+  }
   return (
     <IonPage>
       <IonHeader>
@@ -55,19 +85,19 @@ const EmployeeList: React.FC = () => {
             Agregar Empleado
           </IonButton>
         </IonItem>
-        <IonCard className='contactCard' style={{display:"none"}}>
+        <IonCard className='contactCard' style={clientCard.display}>
           <IonCardHeader className='header'>
-            <IonButton fill="clear" className="close">
+            <IonButton fill="clear" className="close" onClick={closedCard}>
             <IonIcon icon={close} />
             </IonButton>
-            <IonCardTitle>{clientes[0].firstname +" "+ clientes[0].lastname}</IonCardTitle>
+            <IonCardTitle>{clientCard.firstname +" "+ clientCard.lastname}</IonCardTitle>
             <IonList className='card-list'>
             <IonCardSubtitle>Email</IonCardSubtitle>
-            <IonCardContent>{clientes[0].email}</IonCardContent>
+            <IonCardContent>{clientCard.email}</IonCardContent>
             <IonCardSubtitle>Teléfono</IonCardSubtitle>
-            <IonCardContent>{clientes[0].phone}</IonCardContent>
+            <IonCardContent>{clientCard.phone}</IonCardContent>
             <IonCardSubtitle>Dirección</IonCardSubtitle>
-            <IonCardContent>{clientes[0].address}</IonCardContent>
+            <IonCardContent>{clientCard.address}</IonCardContent>
             </IonList>
           </IonCardHeader>
         </IonCard>
@@ -85,7 +115,9 @@ const EmployeeList: React.FC = () => {
              <IonCol className='col'>{cliente.firstname +" "+ cliente.lastname} </IonCol>
              <IonCol className='col'>{cliente.salary} USD</IonCol>
              <IonCol>
-                <IonButton fill='clear'color='primary' style={{ marginLeft:"10px"}}><IonIcon icon={person}/></IonButton>
+                <IonButton onClick={()=>handlerClientCard(cliente)} fill='clear'color='primary' style={{ marginLeft:"10px"}}>
+                  <IonIcon icon={person}/>
+                </IonButton>
              </IonCol>
              <IonCol>
                <IonButton  color="primary" fill="clear"
