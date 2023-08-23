@@ -1,6 +1,6 @@
-import { IonButton, IonButtons, IonCard, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonItem, IonMenuButton, IonPage, IonRow, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonItem, IonList, IonMenuButton, IonPage, IonRow, IonTitle, IonToolbar } from '@ionic/react';
 import { useHistory, useParams } from 'react-router';
-import { add, close, pencil } from 'ionicons/icons';
+import { add, close, pencil, person } from 'ionicons/icons';
 import { useEffect, useState } from 'react';
 import { removeEmployee, searchEmployees } from './EmployeeApi';
 import Employee from './Employee';
@@ -54,6 +54,22 @@ const EmployeeList: React.FC = () => {
             Agregar Empleado
           </IonButton>
         </IonItem>
+        <IonCard className='contactCard'>
+          <IonCardHeader className='header'>
+            <IonButton fill="clear" className="close">
+            <IonIcon icon={close} />
+            </IonButton>
+            <IonCardTitle>{clientes[0].firstname +" "+ clientes[0].lastname}</IonCardTitle>
+            <IonList className='card-list'>
+            <IonCardSubtitle>Email</IonCardSubtitle>
+            <IonCardContent>{clientes[0].email}</IonCardContent>
+            <IonCardSubtitle>Teléfono</IonCardSubtitle>
+            <IonCardContent>{clientes[0].phone}</IonCardContent>
+            <IonCardSubtitle>Dirección</IonCardSubtitle>
+            <IonCardContent>{clientes[0].address}</IonCardContent>
+            </IonList>
+          </IonCardHeader>
+        </IonCard>
         <IonGrid className="table">
         <IonRow className="firstRow">
         <IonCol>Nombre</IonCol>
@@ -61,6 +77,7 @@ const EmployeeList: React.FC = () => {
           <IonCol>Teléfono</IonCol>
           <IonCol>Dirección</IonCol>
           <IonCol>Salario</IonCol>
+          <IonCol>Contacto</IonCol>
           <IonCol>Acciones</IonCol>
         </IonRow>
       </IonGrid>
@@ -73,13 +90,16 @@ const EmployeeList: React.FC = () => {
              <IonCol>{cliente.address}</IonCol>
              <IonCol>{cliente.salary} USD</IonCol>
              <IonCol>
+                <IonButton fill='clear'color='primary' style={{ marginLeft:"10px"}}><IonIcon icon={person}/></IonButton>
+             </IonCol>
+             <IonCol>
                <IonButton  color="primary" fill="clear"
                 onClick={()=>editCostumer(String(cliente.id))} >
-               <IonIcon icon={pencil} slot='icon-only'/>
+               <IonIcon icon={pencil} slot='icon-only'style={{ marginLeft:"-5px"}} />
                </IonButton>
                <IonButton  color="danger" fill="clear"
                onClick={()=>remove(String(cliente.id))}>
-               <IonIcon icon={close} slot='icon-only' />
+               <IonIcon icon={close} slot='icon-only' style={{ marginLeft:"-10px"}} />
                </IonButton>
              </IonCol>
            </IonRow>

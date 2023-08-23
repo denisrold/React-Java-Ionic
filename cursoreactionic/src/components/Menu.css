@@ -119,3 +119,34 @@ ion-item.selected {
   margin-bottom: 45px;
   width:40%;
 }
+.contactCard{
+  background-color:rgba(208, 206, 206, 0.2);
+}
+ion-card .header{
+  margin-top: -2rem;
+  align-items:center;
+}
+.card-list{
+  display: flex;
+  flex-direction: column;
+  background-color:transparent;
+  justify-items: start; 
+}
+
+ion-card ion-card-title{
+  font-weight: bold;
+}
+
+ion-card ion-card-subtitle
+{
+font-weight: bolder;
+}
+
+ion-card .close{
+  margin-left: 95%;
+  width: fit-content;
+  height: fit-content;
+}
+ion-card ion-card-content{
+ margin-left: -1rem;
+}

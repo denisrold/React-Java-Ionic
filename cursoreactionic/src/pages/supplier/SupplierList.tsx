@@ -1,6 +1,6 @@
 import { IonButton, IonButtons, IonCard, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonItem, IonMenuButton, IonPage, IonRow, IonTitle, IonToolbar } from '@ionic/react';
 import { useHistory, useParams } from 'react-router';
-import { add, close, pencil } from 'ionicons/icons';
+import { add, close, pencil, person } from 'ionicons/icons';
 import { useEffect, useState } from 'react';
 import { removeSupplier, searchSuppliers } from './SupplierApi';
 import Supplier from './Supplier';
@@ -61,6 +61,7 @@ const SupplierList: React.FC = () => {
           <IonCol>Teléfono</IonCol>
           <IonCol>web</IonCol>
           <IonCol>Email</IonCol>
+          <IonCol>Contacto</IonCol>
           <IonCol>Acciones</IonCol>
         </IonRow>
       </IonGrid>
@@ -72,13 +73,16 @@ const SupplierList: React.FC = () => {
              <IonCol>{cliente.web}</IonCol>
              <IonCol>{cliente.email}</IonCol>
              <IonCol>
+                <IonButton fill='clear' style={{ marginLeft:"20px"}}><IonIcon icon={person}/></IonButton>
+             </IonCol>
+             <IonCol>
                <IonButton  color="primary" fill="clear"
                 onClick={()=>editCostumer(String(cliente.id))} >
-               <IonIcon icon={pencil} slot='icon-only'/>
+               <IonIcon icon={pencil} slot='icon-only' style={{ marginLeft:"-5px"}}/>
                </IonButton>
                <IonButton  color="danger" fill="clear"
                onClick={()=>remove(String(cliente.id))}>
-               <IonIcon icon={close} slot='icon-only' />
+               <IonIcon icon={close} slot='icon-only' style={{marginLeft:"-10px"}} />
                </IonButton>
              </IonCol>
            </IonRow>
