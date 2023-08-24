@@ -77,14 +77,14 @@ const CustomerEdit: React.FC = () => {
                     <IonItem>
                       <IonInput label="First Name" labelPlacement="stacked" placeholder=""
                       onIonInput={e=>{validate(e);customer.firstname = String(e.detail.value)}} name="firstname"value={customer.firstname}></IonInput>
-                      {!!errors.firstname?<span>{errors.firstname}</span>:null}
+                      {!!errors.firstname?<span className='.errorSpanMessage'>{errors.firstname}</span>:null}
                  </IonItem>
                 </IonCol>
                 <IonCol>
                     <IonItem>
                        <IonInput label="Last Name" labelPlacement="stacked" placeholder="" 
                        onIonInput={e=>{validate(e);customer.lastname = String(e.detail.value)}} name='lastname' value={customer.lastname}></IonInput>
-                       {!!errors.lastname?<span>{errors.lastname}</span>:null}
+                       {!!errors.lastname?<span className='.errorSpanMessage'>{errors.lastname}</span>:null}
                     </IonItem>
                 </IonCol>
             </IonRow>
@@ -93,14 +93,14 @@ const CustomerEdit: React.FC = () => {
                     <IonItem>
                        <IonInput label="Email" labelPlacement="stacked" placeholder=""
                        onIonInput={e=>{validate(e);customer.email = String(e.detail.value)}} name="email" value={customer.email}></IonInput>
-                       {!!errors.email?<span>{errors.email}</span>:null}
+                       {!!errors.email?<span className='.errorSpanMessage'>{errors.email}</span>:null}
                     </IonItem>
                 </IonCol>
                 <IonCol>
                     <IonItem>
                         <IonInput label="Address" labelPlacement="stacked" placeholder=""
                         onIonInput={e=>{validate(e);customer.address = String(e.detail.value)}} name="address" value={customer.address}></IonInput>
-                        {!!errors.address?<span>{errors.address}</span>:null}
+                        {!!errors.address?<span className='.errorSpanMessage'>{errors.address}</span>:null}
                     </IonItem>
                 </IonCol>
             </IonRow>
@@ -109,7 +109,7 @@ const CustomerEdit: React.FC = () => {
                     <IonItem>
                          <IonInput label="Phone" labelPlacement="stacked" placeholder=""
                          onIonInput={e=>{validate(e);customer.phone = String(e.detail.value)}} name="phone" value={customer.phone}></IonInput>
-                         {!!errors.phone?<span>{errors.phone}</span>:null}
+                         {!!errors.phone?<span className='.errorSpanMessage'>{errors.phone}</span>:null}
                     </IonItem>
                 </IonCol>
             </IonRow>
