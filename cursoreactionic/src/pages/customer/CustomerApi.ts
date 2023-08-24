@@ -41,7 +41,7 @@ export async function removeCostumer(id:string){
 };  
 
 export async function saveCustomer(customer: Customer){
-  console.log(customer);
+  
   let response = await fetch(url,{
     "method":"POST",
     "body":JSON.stringify(customer),
@@ -63,7 +63,7 @@ export async function saveCustomer(customer: Customer){
 };
 
 export async  function  searchCustomerById(id:string){
-  console.log(`${url}/${id}`)
+ 
   let response = await fetch(`${url}/${id}`,{
     "method":"GET",
     "headers":{

@@ -2,8 +2,10 @@ import { IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardS
 import { useHistory, useParams } from 'react-router';
 import { add, close, pencil, person } from 'ionicons/icons';
 import { useEffect, useState } from 'react';
+
 import { removeCostumer, searchCustomers } from './CustomerApi';
 import Customer from './Customer';
+
 
 const CustomerList: React.FC = () => {
   const { name } = useParams<{ name: string; }>();

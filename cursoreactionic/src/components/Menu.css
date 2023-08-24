@@ -126,10 +126,11 @@ ion-item.selected {
   top: 50%;
   left: 50%;
   width:90%;
-  height: 50%;
+  height: fit-content;
   transform: translate(-50%, -50%);
   background-color:rgba(230, 231, 231, 0.9);
   z-index:9999;
+
 }
 
 
@@ -148,7 +149,7 @@ ion-card ion-card-title{
   font-weight: bold;
   margin-top: -1rem;
   margin-bottom: 2rem;
- 
+
 }
 
 ion-card ion-card-subtitle
@@ -163,6 +164,7 @@ ion-card .close{
 }
 ion-card ion-card-content{
  margin-left: -1rem;
+
 }
 .close{
   margin-top: 1rem;
@@ -172,4 +174,11 @@ ion-col{
 }
 .col{
   margin-top: .8rem;
+}
+
+@media screen and (min-width: 768px) {
+  .contactCard{
+    width: 50%; /* Cambia al 50% del ancho en pantallas grandes */
+    
+  }
 }
