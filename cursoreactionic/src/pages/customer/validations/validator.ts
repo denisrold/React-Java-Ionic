@@ -37,8 +37,7 @@ type ErrorMessage = {
       else if(values.length > maxLength){
           return {[name]: "No más de 20 letras"}}
       else {
-        return { [name]: "" };
-      }
+        return { [name]: "" };}
     }
     else if (values && (name === "firstname" || name === "lastname")) {
       const capitalLetterRegex = /^[A-Z]/;
@@ -54,11 +53,16 @@ type ErrorMessage = {
       }
     }
     else if (values && name === "address") {
-      const maxLength = 40; 
-     if(values.length > maxLength){
+      const maxLength = 40;
+      const minLength = 5;
+    if(values.length > maxLength){
         return {[name]: "No más de 20 letras"}}
+    
+    else if(values.length <= minLength ){return {[name]:"No es una dirección válida"}}
+    else{return{[name]:""}}
     }
-    else {
+    
+    else{
       return{ [name]: "" };
     }
    
