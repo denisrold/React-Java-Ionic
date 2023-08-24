@@ -4,8 +4,8 @@ import {checkmark} from 'ionicons/icons';
 import { useEffect, useState } from 'react';
 import { saveCustomer, searchCustomerById} from './CustomerApi';
 import Customer from './Customer';
-import errorsValidator from './errorsValidator';
-import  validator  from './validator';
+import errorsValidator from './validations/errorsValidator';
+import  validator  from './validations/validator';
 
 const CustomerEdit: React.FC = () => {
   const { name , id } = useParams<{ name: string; id:string; }>(); 
@@ -18,31 +18,10 @@ const CustomerEdit: React.FC = () => {
   
   //Errors
   const [errors, setErrors] = useState<errorsValidator>({})
- 
-  type ErrorMessage = {
-    [key: string]: string;
-  };
   
   const validate=(value:any)=>{
-    const values = value.detail.value;
-    const name = value.detail.event.target.name;
-    
-    const message:ErrorMessage = {
-      email:"Datos requeridos",
-      firstname:"Datos requeridos",
-      lastname:"Datos requeridos",
-      phone:"Datos requeridos",
-      address:"Datos requeridos"
-    }
-    if(!values){
-      const errorMessage = message[name];
-      setErrors({...errors, [name]: errorMessage })
-    }
-
-    else {
-      setErrors({ ...errors, [name]: "" });
-    }
-   
+    const response = validator(value)
+      setErrors({...errors, ...response })
   }
 
   const history = useHistory();  
@@ -64,6 +43,7 @@ const CustomerEdit: React.FC = () => {
             address:""
         })}
   }
+
   const save = async ()=>{
    await saveCustomer(customer)
     history.push("/page/Customers")
@@ -130,7 +110,7 @@ const CustomerEdit: React.FC = () => {
             </IonRow>
 
         <IonItem>
-          <IonButton onClick={save} color="success" fill='solid' slot="end" size="default" disabled={!customer.firstname || !customer.lastname || !customer.email || !customer.phone || !customer.address}>
+          <IonButton onClick={save} color="success" fill='solid' slot="end" size="default" disabled={!customer.firstname || !customer.lastname || !customer.email || !customer.phone || !customer.address || !errors}>
           <IonIcon icon={checkmark}/>
             Guardar
           </IonButton>
