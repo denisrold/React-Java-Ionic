@@ -1,6 +1,6 @@
 import { IonButton, IonButtons, IonCard, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonInput, IonItem, IonMenuButton, IonPage, IonRow, IonTitle, IonToolbar } from '@ionic/react';
 import { useHistory, useParams} from 'react-router';
-import {checkmark} from 'ionicons/icons';
+import {arrowBackSharp, backspace, checkmark} from 'ionicons/icons';
 import { useEffect, useState } from 'react';
 import { saveCustomer, searchCustomerById} from './CustomerApi';
 import Customer from './Customer';
@@ -52,6 +52,16 @@ const CustomerEdit: React.FC = () => {
     phone:"",  
     address:""})
     history.push("/page/Customers")
+};
+const back = async ()=>{
+  setCustomer({firstname:"",
+   lastname:"",
+   email:"",
+   phone:"",  
+   address:""});
+   
+   setErrors({});
+   history.push("/page/Customers")
 };
 
   return (
@@ -115,6 +125,9 @@ const CustomerEdit: React.FC = () => {
             </IonRow>
 
         <IonItem>
+        <IonButton onClick={back} color="secondary" fill='solid' slot="end" size="default">
+            Volver
+          </IonButton>
           <IonButton onClick={save} color="success" fill='solid' slot="end" size="default" disabled={!isFormValid(customer , errors)}>
           <IonIcon icon={checkmark}/>
             Guardar
