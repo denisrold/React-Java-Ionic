@@ -1,9 +1,10 @@
-
+import customer from "../Customer";
+import errorsValidator from './errorsValidator';
 type ErrorMessage = {
     [key: string]: string;
   };
   
- const  validator=(value:any)=>{
+ export const  validator=(value:any)=>{
     const values = value.detail.value;
     const name = value.detail.event.target.name;
     
@@ -61,11 +62,25 @@ type ErrorMessage = {
     else if(values.length <= minLength ){return {[name]:"No es una dirección válida"}}
     else{return{[name]:""}}
     }
-    
+
     else{
-      return{ [name]: "" };
+      return{ [name]: ""};
     }
    
   }
+
+  export const isFormValid = (customer:customer, errors:errorsValidator) => {
+    return (
+      !!customer.firstname &&
+      !!customer.lastname &&
+      !!customer.email &&
+      !!customer.phone &&
+      !!customer.address &&
+      !errors.address &&
+      !errors.email &&
+      !errors.firstname&&
+      !errors.lastname &&
+      !errors.phone 
+    )}
 
   export default validator;

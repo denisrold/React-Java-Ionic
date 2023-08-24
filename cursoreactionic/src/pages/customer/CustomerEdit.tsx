@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { saveCustomer, searchCustomerById} from './CustomerApi';
 import Customer from './Customer';
 import errorsValidator from './validations/errorsValidator';
-import  validator  from './validations/validator';
+import  {validator , isFormValid }  from './validations/validator';
 
 const CustomerEdit: React.FC = () => {
   const { name , id } = useParams<{ name: string; id:string; }>(); 
@@ -110,7 +110,7 @@ const CustomerEdit: React.FC = () => {
             </IonRow>
 
         <IonItem>
-          <IonButton onClick={save} color="success" fill='solid' slot="end" size="default" disabled={!customer.firstname || !customer.lastname || !customer.email || !customer.phone || !customer.address || !errors}>
+          <IonButton onClick={save} color="success" fill='solid' slot="end" size="default" disabled={!isFormValid(customer , errors)}>
           <IonIcon icon={checkmark}/>
             Guardar
           </IonButton>
