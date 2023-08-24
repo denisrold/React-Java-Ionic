@@ -22,7 +22,7 @@ type ErrorMessage = {
     else if (values && name === "email") {
       const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
       if (!emailRegex.test(values)) {
-        return { [name]: "ej: email@email.com" };
+        return { [name]: "email@email.com" };
       } else {
         return { [name]: "" };
       }
@@ -30,10 +30,12 @@ type ErrorMessage = {
     else if (values && name === "phone") {
       const phoneRegex = /^[0-9]+$/;
       const maxLength = 20;
+      const minLength = 5;
       if (!phoneRegex.test(values)) {
-        return { [name]: "Ingrese solo números" };}
+        return { [name]: "Solo números" };}
+      else if(values.length <= minLength ){return {[name]:"Más de 5 numeros"}}
       else if(values.length > maxLength){
-          return {[name]: "No debe tener más de 20 letras"}}
+          return {[name]: "No más de 20 letras"}}
       else {
         return { [name]: "" };
       }
@@ -43,18 +45,18 @@ type ErrorMessage = {
       const maxLength = 20;
 
       if (!capitalLetterRegex.test(values)) {
-        return { [name]: "La primera letra debe ser mayúscula" };
+        return { [name]: "Primer letra en mayúscula" };
       } 
       else if(values.length > maxLength){
-        return {[name]: "No debe tener más de 20 letras"}}
+        return {[name]: "No más de 20 letras"}}
       else {
         return {  [name]: "" };
       }
     }
     else if (values && name === "address") {
-      const maxLength = 40;
-    if(values.length > maxLength){
-        return {[name]: "No debe tener más de 20 letras"}}
+      const maxLength = 40; 
+     if(values.length > maxLength){
+        return {[name]: "No más de 20 letras"}}
     }
     else {
       return{ [name]: "" };
