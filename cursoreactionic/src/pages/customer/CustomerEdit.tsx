@@ -4,6 +4,8 @@ import {checkmark} from 'ionicons/icons';
 import { useEffect, useState } from 'react';
 import { saveCustomer, searchCustomerById} from './CustomerApi';
 import Customer from './Customer';
+import errorsValidator from './errorsValidator';
+import  validator  from './validator';
 
 const CustomerEdit: React.FC = () => {
   const { name , id } = useParams<{ name: string; id:string; }>(); 
@@ -13,6 +15,36 @@ const CustomerEdit: React.FC = () => {
         lastname:"",
         email:"",
     });
+  
+  //Errors
+  const [errors, setErrors] = useState<errorsValidator>({})
+ 
+  type ErrorMessage = {
+    [key: string]: string;
+  };
+  
+  const validate=(value:any)=>{
+    const values = value.detail.value;
+    const name = value.detail.event.target.name;
+    
+    const message:ErrorMessage = {
+      email:"Datos requeridos",
+      firstname:"Datos requeridos",
+      lastname:"Datos requeridos",
+      phone:"Datos requeridos",
+      address:"Datos requeridos"
+    }
+    if(!values){
+      const errorMessage = message[name];
+      setErrors({...errors, [name]: errorMessage })
+    }
+
+    else {
+      setErrors({ ...errors, [name]: "" });
+    }
+   
+  }
+
   const history = useHistory();  
   useEffect(()=>{
     search();
@@ -59,13 +91,15 @@ const CustomerEdit: React.FC = () => {
                 <IonCol>
                     <IonItem>
                       <IonInput label="First Name" labelPlacement="stacked" placeholder=""
-                      onIonChange={e=>{customer.firstname = String(e.detail.value)}} value={customer.firstname}></IonInput>
+                      onIonInput={e=>{validate(e);customer.firstname = String(e.detail.value)}} name="firstname"value={customer.firstname}></IonInput>
+                      {!!errors.firstname?<span>{errors.firstname}</span>:null}
                  </IonItem>
                 </IonCol>
                 <IonCol>
                     <IonItem>
                        <IonInput label="Last Name" labelPlacement="stacked" placeholder="" 
-                       onIonChange={e=>{customer.lastname = String(e.detail.value)}} value={customer.lastname}></IonInput>
+                       onIonInput={e=>{validate(e);customer.lastname = String(e.detail.value)}} name='lastname' value={customer.lastname}></IonInput>
+                       {!!errors.lastname?<span>{errors.lastname}</span>:null}
                     </IonItem>
                 </IonCol>
             </IonRow>
@@ -73,13 +107,15 @@ const CustomerEdit: React.FC = () => {
                 <IonCol>
                     <IonItem>
                        <IonInput label="Email" labelPlacement="stacked" placeholder=""
-                       onIonChange={e=>{customer.email = String(e.detail.value)}} value={customer.email}></IonInput>
+                       onIonInput={e=>{validate(e);customer.email = String(e.detail.value)}} name="email" value={customer.email}></IonInput>
+                       {!!errors.email?<span>{errors.email}</span>:null}
                     </IonItem>
                 </IonCol>
                 <IonCol>
                     <IonItem>
                         <IonInput label="Address" labelPlacement="stacked" placeholder=""
-                        onIonChange={e=>{customer.address = String(e.detail.value)}} value={customer.address}></IonInput>
+                        onIonInput={e=>{validate(e);customer.address = String(e.detail.value)}} name="address" value={customer.address}></IonInput>
+                        {!!errors.address?<span>{errors.address}</span>:null}
                     </IonItem>
                 </IonCol>
             </IonRow>
@@ -87,13 +123,14 @@ const CustomerEdit: React.FC = () => {
                 <IonCol>
                     <IonItem>
                          <IonInput label="Phone" labelPlacement="stacked" placeholder=""
-                         onIonChange={e=>{customer.phone = String(e.detail.value)}} value={customer.phone}></IonInput>
+                         onIonInput={e=>{validate(e);customer.phone = String(e.detail.value)}} name="phone" value={customer.phone}></IonInput>
+                         {!!errors.phone?<span>{errors.phone}</span>:null}
                     </IonItem>
                 </IonCol>
             </IonRow>
 
         <IonItem>
-          <IonButton onClick={save} color="success" fill='solid' slot="end" size="default">
+          <IonButton onClick={save} color="success" fill='solid' slot="end" size="default" disabled={!customer.firstname || !customer.lastname || !customer.email || !customer.phone || !customer.address}>
           <IonIcon icon={checkmark}/>
             Guardar
           </IonButton>
