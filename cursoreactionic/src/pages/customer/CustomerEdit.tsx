@@ -46,6 +46,11 @@ const CustomerEdit: React.FC = () => {
 
   const save = async ()=>{
    await saveCustomer(customer)
+   setCustomer({firstname:"",
+    lastname:"",
+    email:"",
+    phone:"",  
+    address:""})
     history.push("/page/Customers")
 };
 
