@@ -43,13 +43,11 @@ type ErrorMessage = {
     else if (values && (name === "name")) {
       const capitalLetterRegex = /^[A-Z]/;
       const maxLength = 20;
-      const lettersRegex= /^[a-zA-Z]+$/;
+      
       if (!capitalLetterRegex.test(values)) {
         return { [name]: "Primer letra en mayúscula" };
       } 
-      else if(!lettersRegex.test(values)){
-        return { [name]: "Solo letras" };
-      }
+
       else if(values.length > maxLength){
         return {[name]: "No más de 20 letras"}}
       else {
