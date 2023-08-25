@@ -6,5 +6,5 @@ lastname:string;
 email:string;
 phone?:string;
 address?:string;
-salary?:number;
+salary?:string;
 };
