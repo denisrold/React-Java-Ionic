@@ -1,6 +1,6 @@
 import { IonButton, IonButtons, IonCard, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonInput, IonItem, IonMenuButton, IonPage, IonRow, IonTitle, IonToolbar } from '@ionic/react';
 import { useHistory, useParams} from 'react-router';
-import {arrowBackSharp, backspace, checkmark} from 'ionicons/icons';
+import {checkmark,} from 'ionicons/icons';
 import { useEffect, useState } from 'react';
 import { saveCustomer, searchCustomerById} from './CustomerApi';
 import Customer from './Customer';
@@ -59,7 +59,7 @@ const back = async ()=>{
    email:"",
    phone:"",  
    address:""});
-   
+
    setErrors({});
    history.push("/page/Customers")
 };

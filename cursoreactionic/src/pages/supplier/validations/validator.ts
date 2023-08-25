@@ -1,4 +1,4 @@
-import customer from "../Customer";
+import supplier from "../Supplier";
 import errorsValidator from './errorsValidator';
 type ErrorMessage = {
     [key: string]: string;
@@ -10,8 +10,8 @@ type ErrorMessage = {
     
     const message:ErrorMessage = {
       email:"Datos requeridos",
-      firstname:"Datos requeridos",
-      lastname:"Datos requeridos",
+      name:"Datos requeridos",
+      contact:"Datos requeridos",
       phone:"Datos requeridos",
       address:"Datos requeridos"
     }
@@ -36,15 +36,14 @@ type ErrorMessage = {
         return { [name]: "Solo números" };}
       else if(values.length <= minLength ){return {[name]:"Más de 5 numeros"}}
       else if(values.length > maxLength){
-          return {[name]: "No más de 20 números"}}
+          return {[name]: "No más de 20 letras"}}
       else {
         return { [name]: "" };}
     }
-    else if (values && (name === "firstname" || name === "lastname")) {
-      const capitalLetterRegex =  /^(?:[A-Z][a-z]*)(?:\s[A-Z][a-z]*)*$/;
+    else if (values && (name === "name")) {
+      const capitalLetterRegex = /^[A-Z]/;
       const maxLength = 20;
-      const lettersRegex= /^[a-zA-Z\s]+$/;
-
+      const lettersRegex= /^[a-zA-Z]+$/;
       if (!capitalLetterRegex.test(values)) {
         return { [name]: "Primer letra en mayúscula" };
       } 
@@ -56,6 +55,30 @@ type ErrorMessage = {
       else {
         return {  [name]: "" };
       }
+    }
+    else if (values && (name === "contact")) {
+      const nameRegex = /^[A-Z][a-z]*(?:\s[A-Z][a-z]*)*$/;
+    
+      const maxLength = 20;
+      const lettersRegex= /^[a-zA-Z\s]+$/;
+      if (!nameRegex.test(values)) {
+        return { [name]: "Primer letra en mayúscula" };
+      } 
+
+      else if(!lettersRegex.test(values)){
+        return { [name]: "Solo letras" };
+      }
+      else if(values.length > maxLength){
+        return {[name]: "No más de 20 letras"}}
+      else {
+        return {  [name]: "" };
+      }
+    }
+    else if (values && name === "web") {
+      
+      const maxLength = 20;
+      if(values.length > maxLength){
+          return {[name]: "No más de 25 caracteres"}}
     }
     else if (values && name === "address") {
       const maxLength = 40;
@@ -73,17 +96,17 @@ type ErrorMessage = {
    
   }
 
-  export const isFormValid = (customer:customer, errors:errorsValidator) => {
+  export const isFormValid = (supplier:supplier, errors:errorsValidator) => {
     return (
-      !!customer.firstname &&
-      !!customer.lastname &&
-      !!customer.email &&
-      !!customer.phone &&
-      !!customer.address &&
+      !!supplier.name &&
+      !!supplier.contact &&
+      !!supplier.email &&
+      !!supplier.phone &&
+      !!supplier.address &&
       !errors.address &&
       !errors.email &&
-      !errors.firstname&&
-      !errors.lastname &&
+      !errors.name&&
+      !errors.contact &&
       !errors.phone 
     )}
 

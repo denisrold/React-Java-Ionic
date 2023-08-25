@@ -4,6 +4,8 @@ import {checkmark} from 'ionicons/icons';
 import { useEffect, useState } from 'react';
 import { saveEmployee, searchEmployeeById} from './EmployeeApi';
 import Employee from './Employee';
+import errorsValidator from './validations/errorsValidator';
+import validator, { isFormValid } from './validations/validator';
 
 const EmployeeEdit: React.FC = () => {
   const { name , id } = useParams<{ name: string; id:string; }>();
@@ -12,6 +14,15 @@ const EmployeeEdit: React.FC = () => {
         lastname:"",
         email:"",
     });
+  
+  //Errors Handlers
+  const [errors, setErrors] = useState<errorsValidator>({});
+  
+  const validate=(value:any)=>{
+    const response = validator(value)
+      setErrors({...errors, ...response })
+  }
+  
   const history = useHistory();  
   useEffect(()=>{
     search();
@@ -29,12 +40,29 @@ const EmployeeEdit: React.FC = () => {
             email:"",
             phone:"",
             address:"",
-            salary:0
+            salary:""
         })}
   }
   const save=async ()=>{
-   await saveEmployee(employee)
+   await saveEmployee(employee);
+   setEmployee({firstname:"",
+    lastname:"",
+    email:"",
+    phone:"",  
+    address:"",
+    salary:""});
     history.push("/page/Employees")
+};
+const back = async ()=>{
+  setEmployee({firstname:"",
+   lastname:"",
+   email:"",
+   phone:"",  
+   address:"",
+   salary:""});
+
+   setErrors({});
+   history.push("/page/Employees")
 };
 
   return (
@@ -60,13 +88,15 @@ const EmployeeEdit: React.FC = () => {
                 <IonCol>
                     <IonItem>
                       <IonInput label="First Name" labelPlacement="stacked" placeholder=""
-                      onIonChange={e=>{employee.firstname = String(e.detail.value)}} value={employee.firstname}></IonInput>
+                       onIonInput={e=>{validate(e);employee.firstname = String(e.detail.value)}} name="firstname" value={employee.firstname}></IonInput>
+                       {!!errors.firstname?<span className='.errorSpanMessage'>{errors.firstname}</span>:null}
                  </IonItem>
                 </IonCol>
                 <IonCol>
                     <IonItem>
                        <IonInput label="Last Name" labelPlacement="stacked" placeholder="" 
-                       onIonChange={e=>{employee.lastname = String(e.detail.value)}} value={employee.lastname}></IonInput>
+                        onIonInput={e=>{validate(e);employee.lastname = String(e.detail.value)}} name="lastname" value={employee.lastname}></IonInput>
+                        {!!errors.lastname?<span className='.errorSpanMessage'>{errors.lastname}</span>:null}
                     </IonItem>
                 </IonCol>
             </IonRow>
@@ -74,13 +104,15 @@ const EmployeeEdit: React.FC = () => {
                 <IonCol>
                     <IonItem>
                        <IonInput label="Email" labelPlacement="stacked" placeholder=""
-                       onIonChange={e=>{employee.email = String(e.detail.value)}} value={employee.email}></IonInput>
+                        onIonInput={e=>{validate(e);employee.email = String(e.detail.value)}} name="email" value={employee.email}></IonInput>
+                        {!!errors.email?<span className='.errorSpanMessage'>{errors.email}</span>:null}
                     </IonItem>
                 </IonCol>
                 <IonCol>
                     <IonItem>
                         <IonInput label="Address" labelPlacement="stacked" placeholder=""
-                        onIonChange={e=>{employee.address = String(e.detail.value)}} value={employee.address}></IonInput>
+                         onIonInput={e=>{validate(e);employee.address = String(e.detail.value)}} name="address" value={employee.address}></IonInput>
+                        {!!errors.address?<span className='.errorSpanMessage'>{errors.address}</span>:null}
                     </IonItem>
                 </IonCol>
             </IonRow>
@@ -88,19 +120,24 @@ const EmployeeEdit: React.FC = () => {
                 <IonCol>
                     <IonItem>
                          <IonInput label="Phone" labelPlacement="stacked" placeholder=""
-                         onIonChange={e=>{employee.phone = String(e.detail.value)}} value={employee.phone}></IonInput>
+                          onIonInput={e=>{validate(e);employee.phone = String(e.detail.value)}} name="phone" value={employee.phone}></IonInput>
+                         {!!errors.phone?<span className='.errorSpanMessage'>{errors.phone}</span>:null}
                     </IonItem>
                 </IonCol>
                 <IonCol>
                     <IonItem>
                          <IonInput label="Salario" labelPlacement="stacked" placeholder=""
-                         onIonChange={e=>{employee.salary = Number(e.detail.value)}} value={employee.salary}></IonInput>
+                          onIonInput={e=>{validate(e);employee.salary = String(e.detail.value)}} name="salary" value={employee.salary}></IonInput>
+                          {!!errors.salary?<span className='.errorSpanMessage'>{errors.salary}</span>:null}
                     </IonItem>
                 </IonCol>
             </IonRow>
 
         <IonItem>
-          <IonButton onClick={save} color="success" fill='solid' slot="end" size="default">
+        <IonButton onClick={back} color="secondary" fill='solid' slot="end" size="default">
+            Volver
+          </IonButton>
+          <IonButton onClick={save} color="success" fill='solid' slot="end" size="default" disabled={!isFormValid(employee , errors)}>
           <IonIcon icon={checkmark}/>
             Guardar
           </IonButton>

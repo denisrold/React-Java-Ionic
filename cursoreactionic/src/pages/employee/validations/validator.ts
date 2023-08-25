@@ -1,5 +1,6 @@
-import customer from "../Customer";
+import employee from "../Employee";
 import errorsValidator from './errorsValidator';
+
 type ErrorMessage = {
     [key: string]: string;
   };
@@ -40,11 +41,18 @@ type ErrorMessage = {
       else {
         return { [name]: "" };}
     }
+    else if (values && name === "salary") {
+      const salaryRegex = /^[0-9]+$/;
+      const maxLength = 20;
+      if (!salaryRegex.test(values)) {
+        return { [name]: "Solo números" };}
+      else if(values.length > maxLength){
+          return {[name]: "No más de 20 números"}}
+    }
     else if (values && (name === "firstname" || name === "lastname")) {
       const capitalLetterRegex =  /^(?:[A-Z][a-z]*)(?:\s[A-Z][a-z]*)*$/;
       const maxLength = 20;
       const lettersRegex= /^[a-zA-Z\s]+$/;
-
       if (!capitalLetterRegex.test(values)) {
         return { [name]: "Primer letra en mayúscula" };
       } 
@@ -73,13 +81,13 @@ type ErrorMessage = {
    
   }
 
-  export const isFormValid = (customer:customer, errors:errorsValidator) => {
+  export const isFormValid = (employee:employee, errors:errorsValidator) => {
     return (
-      !!customer.firstname &&
-      !!customer.lastname &&
-      !!customer.email &&
-      !!customer.phone &&
-      !!customer.address &&
+      !!employee.firstname &&
+      !!employee.lastname &&
+      !!employee.email &&
+      !!employee.phone &&
+      !!employee.address &&
       !errors.address &&
       !errors.email &&
       !errors.firstname&&
